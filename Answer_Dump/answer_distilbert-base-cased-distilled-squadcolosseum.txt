@@ -1,0 +1,12 @@
+Question: What is the colosseum?
+Answer: an elliptical structure
+Question: Where is the Colosseum located?
+Answer: the heart of Rome, Italy
+Question: What is the colosseum?
+Answer: an elliptical structure
+Question: Where is the Colosseum located?
+Answer: the heart of Rome, Italy
+Question: Who commissioned the construction of the Colosseum?
+Answer: Emperor Vespasian
+Question: When was the Colosseum built?
+Answer: AD 80
