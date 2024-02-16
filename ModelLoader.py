@@ -36,8 +36,10 @@ class Language_Model:
             self.questions = file.readlines()
             for i in range(len(self.questions)):
                self.questions[i] = self.questions[i].replace("\n", "")
+        print(self.questions)
 
     def predict(self, question=[], voice_check: bool=True, generator_check: bool=False) -> None:
+        print(f"Len: {len(question)}")
         if len(question) >= 1:
             self.questions = question
         for question in self.questions:
