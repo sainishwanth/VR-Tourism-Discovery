@@ -4,7 +4,7 @@ from transformers import AutoModelForQuestionAnswering, AutoTokenizer
 import torch
 import subprocess
 import pyttsx3
-
+from sys import platform
 class Language_Model:
 
     def __init__(self):
@@ -15,7 +15,14 @@ class Language_Model:
         self.questions = None
         self.generator = None
         self.generator_name = 'distilgpt2'
-        self.engine = pyttsx3.init("nsss")
+        if platform == "win32":
+            self.engine = pyttsx3.init("sapi5")
+            print("Windows detected, Opinion Rejected")
+        elif platform == "darwin":
+            self.engine = pyttsx3.init("nsss")
+            print("MacOS, CoolOS")
+        else:
+            raise Exception("Unsupported Platform")
         self.engine.setProperty('rate', 170)
 
     def load_model(self, model_name:str) -> None:
@@ -36,8 +43,10 @@ class Language_Model:
             self.questions = file.readlines()
             for i in range(len(self.questions)):
                self.questions[i] = self.questions[i].replace("\n", "")
+        print(self.questions)
 
     def predict(self, question=[], voice_check: bool=True, generator_check: bool=False) -> None:
+        print(f"Len: {len(question)}")
         if len(question) >= 1:
             self.questions = question
         for question in self.questions:
@@ -57,6 +66,8 @@ class Language_Model:
             self.voice_generation(answer)
         return None
 
+    def save_model(self, saved_model_name: str) -> None:
+        self.model.save_pretrained(f"Models/{saved_model_name}")
 
     def custom_predict(self, user_input) -> None:
 
